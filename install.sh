@@ -12,12 +12,14 @@ usage() {
   echo "Usage: $0 [target-dir] [tool]"
   echo ""
   echo "  target-dir  — โฟลเดอร์ที่ต้องการติดตั้ง (default: current directory)"
-  echo "  tool        — AI tool ที่ใช้: claude-code | opencode | chatgpt-codex (default: claude-code)"
+  echo "  tool        — AI tool ที่ใช้: claude-code | opencode | chatgpt-codex | gemini-cli | antigravity (default: claude-code)"
   echo ""
   echo "Examples:"
   echo "  $0                              # ติดตั้ง Claude Code ใน current dir"
   echo "  $0 /path/to/project opencode    # ติดตั้ง OpenCode ใน project dir"
   echo "  $0 . chatgpt-codex              # ติดตั้ง ChatGPT Codex ใน current dir"
+  echo "  $0 . gemini-cli                 # ติดตั้ง Gemini CLI ใน current dir"
+  echo "  $0 . antigravity                # ติดตั้ง Google Antigravity ใน current dir"
 }
 
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
@@ -77,9 +79,31 @@ case "$TOOL" in
     echo "✅ Done! Codex will read AGENTS.md automatically."
     ;;
 
+  gemini-cli)
+    echo "🤖 Installing for Gemini CLI..."
+    cp "$SCRIPT_DIR/for-gemini-cli/GEMINI.md" "$TARGET/GEMINI.md"
+    echo "   ✓ GEMINI.md"
+    echo ""
+    echo "✅ Done! Gemini CLI will read GEMINI.md automatically."
+    ;;
+
+  antigravity)
+    echo "🤖 Installing for Google Antigravity..."
+    cp "$SCRIPT_DIR/for-antigravity/GEMINI.md" "$TARGET/GEMINI.md"
+    mkdir -p "$TARGET/.agent/skills/lawform-lawyer"
+    mkdir -p "$TARGET/.agent/skills/lawform-review"
+    cp "$SCRIPT_DIR/for-antigravity/.agent/skills/lawform-lawyer/SKILL.md" "$TARGET/.agent/skills/lawform-lawyer/SKILL.md"
+    cp "$SCRIPT_DIR/for-antigravity/.agent/skills/lawform-review/SKILL.md" "$TARGET/.agent/skills/lawform-review/SKILL.md"
+    echo "   ✓ GEMINI.md"
+    echo "   ✓ .agent/skills/lawform-lawyer/SKILL.md"
+    echo "   ✓ .agent/skills/lawform-review/SKILL.md"
+    echo ""
+    echo "✅ Done! Use 'lawform-lawyer' or 'lawform-review' skill in Antigravity."
+    ;;
+
   *)
     echo "❌ Unknown tool: $TOOL"
-    echo "   Supported: claude-code | opencode | chatgpt-codex"
+    echo "   Supported: claude-code | opencode | chatgpt-codex | gemini-cli | antigravity"
     usage
     exit 1
     ;;

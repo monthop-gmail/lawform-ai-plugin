@@ -28,6 +28,8 @@ lawform-ai-plugin/
   for-claude-code/     — สำหรับ Claude Code
   for-opencode/        — สำหรับ OpenCode
   for-chatgpt-codex/   — สำหรับ ChatGPT Codex / OpenAI Codex
+  for-gemini-cli/      — สำหรับ Gemini CLI
+  for-antigravity/     — สำหรับ Google Antigravity
 ```
 
 ---
@@ -88,6 +90,31 @@ cp lawform-ai-plugin/agents/REVIEW.md agent-REVIEW.md
 ```
 
 ใช้งาน: บอก AI บทบาทที่ต้องการในแต่ละ session
+
+---
+
+### Gemini CLI
+
+```bash
+cd /path/to/your-odoo-project
+cp for-gemini-cli/GEMINI.md .
+cp agents/LAWYER.md agent-LAWYER.md
+cp agents/REVIEW.md agent-REVIEW.md
+```
+
+ใช้งาน: บอก AI ว่า "ทำหน้าที่ AI ทนาย" หรือ "ตรวจสำนวนคดี X"
+
+### Google Antigravity
+
+```bash
+cd /path/to/your-odoo-project
+cp for-antigravity/GEMINI.md .
+cp -r for-antigravity/.agent .
+cp agents/LAWYER.md agent-LAWYER.md
+cp agents/REVIEW.md agent-REVIEW.md
+```
+
+ใช้งาน: Antigravity จะโหลด skill `lawform-lawyer` และ `lawform-review` โดยอัตโนมัติ
 
 ---
 
