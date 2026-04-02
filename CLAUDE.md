@@ -36,6 +36,10 @@ lawform-ai-plugin/
     index.ts           — TypeScript plugin (definePluginEntry)
     openclaw.plugin.json
     package.json       — @lawform/openclaw-plugin
+  for-google-adk/
+    lawform_agent/
+      agent.py         — root_agent + lawyer_agent + review_agent (Python)
+    pyproject.toml
   install.sh           — one-command installer
 ```
 

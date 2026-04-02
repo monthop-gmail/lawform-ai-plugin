@@ -1,0 +1,18 @@
+[project]
+name = "lawform-adk-agent"
+version = "1.0.0"
+description = "lawform AI agent for Google ADK — Thai court document assistant"
+requires-python = ">=3.11"
+dependencies = [
+    "google-adk>=1.0.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"

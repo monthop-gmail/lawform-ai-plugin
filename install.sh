@@ -12,7 +12,7 @@ usage() {
   echo "Usage: $0 [target-dir] [tool]"
   echo ""
   echo "  target-dir  — โฟลเดอร์ที่ต้องการติดตั้ง (default: current directory)"
-  echo "  tool        — AI tool ที่ใช้: claude-code | opencode | chatgpt-codex | gemini-cli | antigravity | openclaw (default: claude-code)"
+  echo "  tool        — AI tool ที่ใช้: claude-code | opencode | chatgpt-codex | gemini-cli | antigravity | openclaw | google-adk (default: claude-code)"
   echo ""
   echo "Examples:"
   echo "  $0                              # ติดตั้ง Claude Code ใน current dir"
@@ -21,6 +21,7 @@ usage() {
   echo "  $0 . gemini-cli                 # ติดตั้ง Gemini CLI ใน current dir"
   echo "  $0 . antigravity                # ติดตั้ง Google Antigravity ใน current dir"
   echo "  $0 . openclaw                   # แสดงวิธีติดตั้ง OpenClaw plugin"
+  echo "  $0 . google-adk                 # แสดงวิธีติดตั้ง Google ADK agent"
 }
 
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
@@ -121,9 +122,27 @@ case "$TOOL" in
     exit 0
     ;;
 
+  google-adk)
+    echo "🐍 Google ADK agent (Python)"
+    echo ""
+    echo "   Google ADK agent is a Python package — set it up directly:"
+    echo ""
+    echo "   cd $SCRIPT_DIR/for-google-adk"
+    echo "   pip install -e ."
+    echo "   cp lawform_agent/.env.example lawform_agent/.env"
+    echo "   # แก้ไข .env ใส่ GOOGLE_API_KEY"
+    echo ""
+    echo "   # รัน:"
+    echo "   adk web          # Dev UI (browser)"
+    echo "   adk run lawform_agent    # Terminal"
+    echo ""
+    echo "✅ See for-google-adk/README.md for full details."
+    exit 0
+    ;;
+
   *)
     echo "❌ Unknown tool: $TOOL"
-    echo "   Supported: claude-code | opencode | chatgpt-codex | gemini-cli | antigravity | openclaw"
+    echo "   Supported: claude-code | opencode | chatgpt-codex | gemini-cli | antigravity | openclaw | google-adk"
     usage
     exit 1
     ;;

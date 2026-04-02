@@ -31,6 +31,7 @@ lawform-ai-plugin/
   for-gemini-cli/      — สำหรับ Gemini CLI
   for-antigravity/     — สำหรับ Google Antigravity
   for-openclaw/        — สำหรับ OpenClaw (TypeScript npm plugin)
+  for-google-adk/      — สำหรับ Google ADK (Python agent)
 ```
 
 ---
@@ -118,6 +119,23 @@ openclaw config set lawform-legal.mcpUrl http://localhost:8000/mcp/
 ใช้งาน: บอก OpenClaw ว่า "ทำหน้าที่ทนาย..." หรือ "ตรวจสำนวนคดี X"
 
 Plugin ลงทะเบียน tools: `lawform_start_lawyer_mode`, `lawform_search_cases`, `lawform_create_case`, `lawform_create_document`, `lawform_apply_merge`, `lawform_review_case`
+
+### Google ADK
+
+```bash
+cd for-google-adk
+pip install -e .
+cp lawform_agent/.env.example lawform_agent/.env
+# แก้ไข .env ใส่ GOOGLE_API_KEY
+
+# รัน dev UI
+adk web
+# หรือ terminal
+adk run lawform_agent
+```
+
+Agent ประกอบด้วย `root_agent` → `lawyer_agent` + `review_agent`
+เชื่อมต่อ Odoo ผ่าน `McpToolset(StreamableHTTPConnectionParams(url=MCP_URL))`
 
 ### Google Antigravity
 
