@@ -30,6 +30,7 @@ lawform-ai-plugin/
   for-chatgpt-codex/   — สำหรับ ChatGPT Codex / OpenAI Codex
   for-gemini-cli/      — สำหรับ Gemini CLI
   for-antigravity/     — สำหรับ Google Antigravity
+  for-openclaw/        — สำหรับ OpenClaw (TypeScript npm plugin)
 ```
 
 ---
@@ -103,6 +104,20 @@ cp agents/REVIEW.md agent-REVIEW.md
 ```
 
 ใช้งาน: บอก AI ว่า "ทำหน้าที่ AI ทนาย" หรือ "ตรวจสำนวนคดี X"
+
+### OpenClaw
+
+```bash
+# ติดตั้ง plugin
+openclaw plugins install @lawform/openclaw-plugin
+
+# ตั้งค่า MCP URL
+openclaw config set lawform-legal.mcpUrl http://localhost:8000/mcp/
+```
+
+ใช้งาน: บอก OpenClaw ว่า "ทำหน้าที่ทนาย..." หรือ "ตรวจสำนวนคดี X"
+
+Plugin ลงทะเบียน tools: `lawform_start_lawyer_mode`, `lawform_search_cases`, `lawform_create_case`, `lawform_create_document`, `lawform_apply_merge`, `lawform_review_case`
 
 ### Google Antigravity
 

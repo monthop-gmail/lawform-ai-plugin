@@ -12,7 +12,7 @@ usage() {
   echo "Usage: $0 [target-dir] [tool]"
   echo ""
   echo "  target-dir  — โฟลเดอร์ที่ต้องการติดตั้ง (default: current directory)"
-  echo "  tool        — AI tool ที่ใช้: claude-code | opencode | chatgpt-codex | gemini-cli | antigravity (default: claude-code)"
+  echo "  tool        — AI tool ที่ใช้: claude-code | opencode | chatgpt-codex | gemini-cli | antigravity | openclaw (default: claude-code)"
   echo ""
   echo "Examples:"
   echo "  $0                              # ติดตั้ง Claude Code ใน current dir"
@@ -20,6 +20,7 @@ usage() {
   echo "  $0 . chatgpt-codex              # ติดตั้ง ChatGPT Codex ใน current dir"
   echo "  $0 . gemini-cli                 # ติดตั้ง Gemini CLI ใน current dir"
   echo "  $0 . antigravity                # ติดตั้ง Google Antigravity ใน current dir"
+  echo "  $0 . openclaw                   # แสดงวิธีติดตั้ง OpenClaw plugin"
 }
 
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
@@ -101,9 +102,28 @@ case "$TOOL" in
     echo "✅ Done! Use 'lawform-lawyer' or 'lawform-review' skill in Antigravity."
     ;;
 
+  openclaw)
+    echo "🦞 OpenClaw plugin (@lawform/openclaw-plugin)"
+    echo ""
+    echo "   OpenClaw plugin is a TypeScript npm package — install via OpenClaw CLI:"
+    echo ""
+    echo "   openclaw plugins install @lawform/openclaw-plugin"
+    echo ""
+    echo "   Or install from local path:"
+    echo "   openclaw plugins install $SCRIPT_DIR/for-openclaw"
+    echo ""
+    echo "   Then configure:"
+    echo "   openclaw config set lawform-legal.mcpUrl http://localhost:8000/mcp/"
+    echo "   openclaw config set lawform-legal.odooUrl http://localhost:8069"
+    echo "   openclaw config set lawform-legal.database lawform"
+    echo ""
+    echo "✅ See for-openclaw/README.md for full details."
+    exit 0
+    ;;
+
   *)
     echo "❌ Unknown tool: $TOOL"
-    echo "   Supported: claude-code | opencode | chatgpt-codex | gemini-cli | antigravity"
+    echo "   Supported: claude-code | opencode | chatgpt-codex | gemini-cli | antigravity | openclaw"
     usage
     exit 1
     ;;

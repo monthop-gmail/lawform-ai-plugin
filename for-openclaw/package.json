@@ -1,0 +1,26 @@
+{
+  "name": "@lawform/openclaw-plugin",
+  "version": "1.0.0",
+  "description": "Thai court document assistant for OpenClaw — AI lawyer and case reviewer via lawform (Odoo)",
+  "type": "module",
+  "main": "./dist/index.js",
+  "openclaw": {
+    "extensions": ["./index.ts"],
+    "compat": {
+      "pluginApi": ">=2026.3.24-beta.2"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": ["openclaw", "plugin", "lawform", "legal", "thai", "court", "odoo"],
+  "license": "MIT",
+  "devDependencies": {
+    "openclaw": "*",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.3.24-beta.2"
+  }
+}

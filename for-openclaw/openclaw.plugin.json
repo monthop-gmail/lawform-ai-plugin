@@ -1,0 +1,27 @@
+{
+  "id": "lawform-legal",
+  "name": "Lawform Legal",
+  "description": "Thai court document assistant powered by lawform (Odoo). Lets the AI act as a lawyer to prepare court documents, or as a reviewer to check case files.",
+  "version": "1.0.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "odooUrl": {
+        "type": "string",
+        "description": "Odoo server URL",
+        "default": "http://localhost:8069"
+      },
+      "mcpUrl": {
+        "type": "string",
+        "description": "lawform MCP server URL",
+        "default": "http://localhost:8000/mcp/"
+      },
+      "database": {
+        "type": "string",
+        "description": "Odoo database name",
+        "default": "lawform"
+      }
+    }
+  }
+}
