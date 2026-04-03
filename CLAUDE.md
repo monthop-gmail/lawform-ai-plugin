@@ -40,6 +40,24 @@ lawform-ai-plugin/
     lawform_agent/
       agent.py         — root_agent + lawyer_agent + review_agent (Python)
     pyproject.toml
+  for-gocode/
+    AGENTS.md          — system instructions (gocode reads automatically)
+  for-codex-appserver/
+    AGENTS.md          — system instructions
+  for-copilot-cli/
+    AGENTS.md          — system instructions
+  for-qwen-code/
+    AGENTS.md          — system instructions
+  for-adkcode/
+    .claude-plugin/
+      plugin.json      — plugin metadata
+    .mcp.json          — MCP config → lawform Odoo server
+    skills/
+      lawform-lawyer/SKILL.md
+      lawform-review/SKILL.md
+    commands/
+      lawyer.md        — /lawyer command
+      review.md        — /review command
   install.sh           — one-command installer
 ```
 
@@ -53,9 +71,13 @@ lawform-ai-plugin/
 ./install.sh /path/to/project opencode
 ./install.sh /path/to/project gemini-cli
 ./install.sh /path/to/project antigravity
+./install.sh /path/to/project gocode
 
 # OpenClaw (npm plugin — ติดตั้งต่างออกไป)
 ./install.sh . openclaw
+
+# adkcode (copy plugin directory ไปยัง adkcode plugins folder)
+./install.sh . adkcode
 ```
 
 ## Core Agents

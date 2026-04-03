@@ -1,0 +1,8 @@
+{
+  "name": "lawform",
+  "version": "1.0.0",
+  "description": "AI ทนายความและผู้ตรวจสำนวน สำหรับระบบ lawform (Odoo Thai court forms) — สร้างคดี เลือกฟอร์ม ร่างเนื้อหา และตรวจสอบเอกสารศาล",
+  "author": {
+    "name": "monthop-gmail"
+  }
+}

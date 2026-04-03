@@ -12,16 +12,21 @@ usage() {
   echo "Usage: $0 [target-dir] [tool]"
   echo ""
   echo "  target-dir  — โฟลเดอร์ที่ต้องการติดตั้ง (default: current directory)"
-  echo "  tool        — AI tool ที่ใช้: claude-code | opencode | chatgpt-codex | gemini-cli | antigravity | openclaw | google-adk (default: claude-code)"
+  echo "  tool        — AI tool ที่ใช้: claude-code | opencode | chatgpt-codex | codex-appserver | gemini-cli | antigravity | openclaw | google-adk | gocode | adkcode | copilot-cli | qwen-code (default: claude-code)"
   echo ""
   echo "Examples:"
   echo "  $0                              # ติดตั้ง Claude Code ใน current dir"
   echo "  $0 /path/to/project opencode    # ติดตั้ง OpenCode ใน project dir"
   echo "  $0 . chatgpt-codex              # ติดตั้ง ChatGPT Codex ใน current dir"
+  echo "  $0 . codex-appserver            # ติดตั้ง Codex App Server ใน current dir"
   echo "  $0 . gemini-cli                 # ติดตั้ง Gemini CLI ใน current dir"
   echo "  $0 . antigravity                # ติดตั้ง Google Antigravity ใน current dir"
   echo "  $0 . openclaw                   # แสดงวิธีติดตั้ง OpenClaw plugin"
   echo "  $0 . google-adk                 # แสดงวิธีติดตั้ง Google ADK agent"
+  echo "  $0 . gocode                     # ติดตั้ง gocode ใน project dir"
+  echo "  $0 . adkcode                    # แสดงวิธีติดตั้ง adkcode plugin"
+  echo "  $0 . copilot-cli                # ติดตั้ง GitHub Copilot CLI ใน project dir"
+  echo "  $0 . qwen-code                  # ติดตั้ง Qwen Code ใน project dir"
 }
 
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
@@ -81,6 +86,30 @@ case "$TOOL" in
     echo "✅ Done! Codex will read AGENTS.md automatically."
     ;;
 
+  codex-appserver)
+    echo "🤖 Installing for Codex App Server..."
+    cp "$SCRIPT_DIR/for-codex-appserver/AGENTS.md" "$TARGET/AGENTS.md"
+    echo "   ✓ AGENTS.md"
+    echo ""
+    echo "✅ Done! Codex App Server will read AGENTS.md automatically."
+    ;;
+
+  copilot-cli)
+    echo "🤖 Installing for GitHub Copilot CLI..."
+    cp "$SCRIPT_DIR/for-copilot-cli/AGENTS.md" "$TARGET/AGENTS.md"
+    echo "   ✓ AGENTS.md"
+    echo ""
+    echo "✅ Done! GitHub Copilot CLI will read AGENTS.md automatically."
+    ;;
+
+  qwen-code)
+    echo "🤖 Installing for Qwen Code..."
+    cp "$SCRIPT_DIR/for-qwen-code/AGENTS.md" "$TARGET/AGENTS.md"
+    echo "   ✓ AGENTS.md"
+    echo ""
+    echo "✅ Done! Qwen Code will read AGENTS.md automatically."
+    ;;
+
   gemini-cli)
     echo "🤖 Installing for Gemini CLI..."
     cp "$SCRIPT_DIR/for-gemini-cli/GEMINI.md" "$TARGET/GEMINI.md"
@@ -122,6 +151,36 @@ case "$TOOL" in
     exit 0
     ;;
 
+  gocode)
+    echo "🐹 Installing for gocode..."
+    cp "$SCRIPT_DIR/for-gocode/AGENTS.md" "$TARGET/AGENTS.md"
+    echo "   ✓ AGENTS.md"
+    echo ""
+    echo "✅ Done! gocode will read AGENTS.md automatically."
+    echo "   Tell gocode: 'ทำหน้าที่ AI ทนาย' or 'ตรวจสำนวนคดี X'"
+    ;;
+
+  adkcode)
+    echo "🐍 adkcode plugin (lawform)"
+    echo ""
+    echo "   Copy the plugin directory to adkcode's plugins folder:"
+    echo ""
+    echo "   cp -r $SCRIPT_DIR/for-adkcode <adkcode-dir>/plugins/lawform"
+    echo ""
+    echo "   Or if running via Docker, mount it:"
+    echo "   volumes:"
+    echo "     - $SCRIPT_DIR/for-adkcode:/app/plugins/lawform"
+    echo ""
+    echo "   Then also copy agent docs to your project:"
+    echo "   cp $SCRIPT_DIR/agents/LAWYER.md <project>/agent-LAWYER.md"
+    echo "   cp $SCRIPT_DIR/agents/REVIEW.md  <project>/agent-REVIEW.md"
+    echo ""
+    echo "   Use /lawyer or /review commands, or describe a case directly."
+    echo ""
+    echo "✅ See for-adkcode/.claude-plugin/plugin.json for plugin metadata."
+    exit 0
+    ;;
+
   google-adk)
     echo "🐍 Google ADK agent (Python)"
     echo ""
@@ -142,7 +201,7 @@ case "$TOOL" in
 
   *)
     echo "❌ Unknown tool: $TOOL"
-    echo "   Supported: claude-code | opencode | chatgpt-codex | gemini-cli | antigravity | openclaw | google-adk"
+    echo "   Supported: claude-code | opencode | chatgpt-codex | codex-appserver | gemini-cli | antigravity | openclaw | google-adk | gocode | adkcode | copilot-cli | qwen-code"
     usage
     exit 1
     ;;
