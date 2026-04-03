@@ -114,8 +114,27 @@ case "$TOOL" in
     echo "🤖 Installing for Gemini CLI..."
     cp "$SCRIPT_DIR/for-gemini-cli/GEMINI.md" "$TARGET/GEMINI.md"
     echo "   ✓ GEMINI.md"
+
+    # MCP config — merge into .gemini/settings.json (project-level)
+    GEMINI_SETTINGS="$TARGET/.gemini/settings.json"
+    mkdir -p "$TARGET/.gemini"
+    if [[ -f "$GEMINI_SETTINGS" ]]; then
+      python3 -c "
+import json
+with open('$GEMINI_SETTINGS') as f:
+    config = json.load(f)
+config.setdefault('mcpServers', {})['lawform-odoo'] = {'httpUrl': 'http://localhost:8000/mcp/'}
+with open('$GEMINI_SETTINGS', 'w') as f:
+    json.dump(config, f, indent=2, ensure_ascii=False)
+"
+      echo "   ✓ .gemini/settings.json (lawform-odoo merged)"
+    else
+      cp "$SCRIPT_DIR/for-gemini-cli/settings.json" "$GEMINI_SETTINGS"
+      echo "   ✓ .gemini/settings.json (created)"
+    fi
+
     echo ""
-    echo "✅ Done! Gemini CLI will read GEMINI.md automatically."
+    echo "✅ Done! Gemini CLI will read GEMINI.md and connect to lawform MCP automatically."
     ;;
 
   antigravity)
@@ -128,6 +147,25 @@ case "$TOOL" in
     echo "   ✓ GEMINI.md"
     echo "   ✓ .agent/skills/lawform-lawyer/SKILL.md"
     echo "   ✓ .agent/skills/lawform-review/SKILL.md"
+
+    # MCP config — merge into ~/.gemini/antigravity/mcp_config.json
+    ANTIGRAVITY_MCP="$HOME/.gemini/antigravity/mcp_config.json"
+    mkdir -p "$HOME/.gemini/antigravity"
+    if [[ -f "$ANTIGRAVITY_MCP" ]]; then
+      python3 -c "
+import json
+with open('$ANTIGRAVITY_MCP') as f:
+    config = json.load(f)
+config.setdefault('mcpServers', {})['lawform-odoo'] = {'serverUrl': 'http://localhost:8000/mcp/'}
+with open('$ANTIGRAVITY_MCP', 'w') as f:
+    json.dump(config, f, indent=2, ensure_ascii=False)
+"
+      echo "   ✓ ~/.gemini/antigravity/mcp_config.json (lawform-odoo merged)"
+    else
+      cp "$SCRIPT_DIR/for-antigravity/mcp_config.json" "$ANTIGRAVITY_MCP"
+      echo "   ✓ ~/.gemini/antigravity/mcp_config.json (created)"
+    fi
+
     echo ""
     echo "✅ Done! Use 'lawform-lawyer' or 'lawform-review' skill in Antigravity."
     ;;
