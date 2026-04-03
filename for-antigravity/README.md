@@ -19,14 +19,6 @@ Antigravity จะตรวจจับ skills โดยอัตโนมัต
 | `lawform-lawyer` | บอกว่า "ทำหน้าที่ทนาย" หรือเล่าเรื่องคดี |
 | `lawform-review` | บอกว่า "ตรวจสำนวนคดี X" |
 
-## ตั้งค่า MCP
-
-Antigravity รองรับ MCP ผ่าน settings — ตั้งค่า Odoo MCP server:
-
-```
-MCP Endpoint: http://localhost:8000/mcp/
-```
-
 ## โครงสร้างที่ติดตั้ง
 
 ```

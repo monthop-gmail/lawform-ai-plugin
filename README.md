@@ -24,7 +24,7 @@ Plugin นี้ให้ AI ทำงานในระบบ lawform ได้
 |------|---------|-----------|
 | Claude Code | `for-claude-code/` | `.claude/commands/` + `.mcp.json` |
 | OpenCode | `for-opencode/` | `AGENTS.md` + `opencode.json` |
-| Codex (CLI / App Server) | `for-codex/` + `for-codex-appserver/` | `AGENTS.md` |
+| Codex CLI | `for-codex/` | `AGENTS.md` |
 | Codex App Server | `for-codex-appserver/` | `AGENTS.md` |
 | Gemini CLI | `for-gemini-cli/` | `GEMINI.md` |
 | Google Antigravity | `for-antigravity/` | `GEMINI.md` + skills |
@@ -91,7 +91,7 @@ lawform-ai-plugin/
     REVIEW.md          — คู่มือ AI ผู้ตรวจ (tool-agnostic)
   for-claude-code/     — Claude Code
   for-opencode/        — OpenCode
-  for-codex/   — ChatGPT Codex / OpenAI Codex CLI
+  for-codex/          — Codex / OpenAI Codex CLI
   for-codex-appserver/ — OpenAI Codex App Server
   for-gemini-cli/      — Gemini CLI
   for-antigravity/     — Google Antigravity
