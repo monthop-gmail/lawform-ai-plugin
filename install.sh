@@ -98,8 +98,27 @@ case "$TOOL" in
     echo "🤖 Installing for GitHub Copilot CLI..."
     cp "$SCRIPT_DIR/for-copilot-cli/AGENTS.md" "$TARGET/AGENTS.md"
     echo "   ✓ AGENTS.md"
+
+    # MCP config — merge into ~/.copilot/mcp-config.json (global)
+    COPILOT_MCP="$HOME/.copilot/mcp-config.json"
+    mkdir -p "$HOME/.copilot"
+    if [[ -f "$COPILOT_MCP" ]]; then
+      python3 -c "
+import json
+with open('$COPILOT_MCP') as f:
+    config = json.load(f)
+config.setdefault('mcpServers', {})['lawform-odoo'] = {'type': 'http', 'url': 'http://localhost:8000/mcp/'}
+with open('$COPILOT_MCP', 'w') as f:
+    json.dump(config, f, indent=2, ensure_ascii=False)
+"
+      echo "   ✓ ~/.copilot/mcp-config.json (lawform-odoo merged)"
+    else
+      cp "$SCRIPT_DIR/for-copilot-cli/mcp-config.json" "$COPILOT_MCP"
+      echo "   ✓ ~/.copilot/mcp-config.json (created)"
+    fi
+
     echo ""
-    echo "✅ Done! GitHub Copilot CLI will read AGENTS.md automatically."
+    echo "✅ Done! GitHub Copilot CLI will connect to lawform MCP automatically."
     ;;
 
   qwen-code)
