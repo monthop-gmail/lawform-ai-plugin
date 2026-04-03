@@ -106,8 +106,24 @@ case "$TOOL" in
     echo "🤖 Installing for Codex App Server..."
     cp "$SCRIPT_DIR/for-codex-appserver/AGENTS.md" "$TARGET/AGENTS.md"
     echo "   ✓ AGENTS.md"
+
+    # MCP config — same as codex (.codex/config.toml project-level)
+    CODEX_CONFIG="$TARGET/.codex/config.toml"
+    mkdir -p "$TARGET/.codex"
+    if [[ -f "$CODEX_CONFIG" ]]; then
+      if grep -q "lawform-odoo" "$CODEX_CONFIG"; then
+        echo "   ⚠ .codex/config.toml already has lawform-odoo — skipped"
+      else
+        printf '\n[mcp_servers.lawform-odoo]\nurl = "http://localhost:8000/mcp/"\n' >> "$CODEX_CONFIG"
+        echo "   ✓ .codex/config.toml (lawform-odoo appended)"
+      fi
+    else
+      cp "$SCRIPT_DIR/for-codex-appserver/config.toml" "$CODEX_CONFIG"
+      echo "   ✓ .codex/config.toml (created)"
+    fi
+
     echo ""
-    echo "✅ Done! Codex App Server will read AGENTS.md automatically."
+    echo "✅ Done! Codex App Server will read AGENTS.md and connect to lawform MCP automatically."
     ;;
 
   copilot-cli)
