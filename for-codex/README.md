@@ -1,10 +1,10 @@
-# lawform-ai-plugin — for ChatGPT Codex / OpenAI Codex CLI
+# lawform-ai-plugin — for Codex / OpenAI Codex CLI
 
 ## ติดตั้ง
 
 ```bash
 cd /path/to/your-odoo-project
-cp for-chatgpt-codex/AGENTS.md .
+cp for-codex/AGENTS.md .
 cp agents/LAWYER.md agent-LAWYER.md
 cp agents/REVIEW.md agent-REVIEW.md
 ```

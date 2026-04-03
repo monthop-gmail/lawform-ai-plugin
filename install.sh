@@ -12,12 +12,12 @@ usage() {
   echo "Usage: $0 [target-dir] [tool]"
   echo ""
   echo "  target-dir  — โฟลเดอร์ที่ต้องการติดตั้ง (default: current directory)"
-  echo "  tool        — AI tool ที่ใช้: claude-code | opencode | chatgpt-codex | codex-appserver | gemini-cli | antigravity | openclaw | google-adk | gocode | adkcode | copilot-cli | qwen-code (default: claude-code)"
+  echo "  tool        — AI tool ที่ใช้: claude-code | opencode | codex | codex-appserver | gemini-cli | antigravity | openclaw | google-adk | gocode | adkcode | copilot-cli | qwen-code (default: claude-code)"
   echo ""
   echo "Examples:"
   echo "  $0                              # ติดตั้ง Claude Code ใน current dir"
   echo "  $0 /path/to/project opencode    # ติดตั้ง OpenCode ใน project dir"
-  echo "  $0 . chatgpt-codex              # ติดตั้ง ChatGPT Codex ใน current dir"
+  echo "  $0 . codex                      # ติดตั้ง Codex ใน current dir"
   echo "  $0 . codex-appserver            # ติดตั้ง Codex App Server ใน current dir"
   echo "  $0 . gemini-cli                 # ติดตั้ง Gemini CLI ใน current dir"
   echo "  $0 . antigravity                # ติดตั้ง Google Antigravity ใน current dir"
@@ -78,9 +78,9 @@ case "$TOOL" in
     echo "✅ Done! Tell OpenCode: 'ทำหน้าที่ AI ทนาย' or 'ตรวจสำนวนคดี X'"
     ;;
 
-  chatgpt-codex)
-    echo "🤖 Installing for ChatGPT Codex..."
-    cp "$SCRIPT_DIR/for-chatgpt-codex/AGENTS.md" "$TARGET/AGENTS.md"
+  codex)
+    echo "🤖 Installing for Codex..."
+    cp "$SCRIPT_DIR/for-codex/AGENTS.md" "$TARGET/AGENTS.md"
     echo "   ✓ AGENTS.md"
     echo ""
     echo "✅ Done! Codex will read AGENTS.md automatically."
@@ -201,7 +201,7 @@ case "$TOOL" in
 
   *)
     echo "❌ Unknown tool: $TOOL"
-    echo "   Supported: claude-code | opencode | chatgpt-codex | codex-appserver | gemini-cli | antigravity | openclaw | google-adk | gocode | adkcode | copilot-cli | qwen-code"
+    echo "   Supported: claude-code | opencode | codex | codex-appserver | gemini-cli | antigravity | openclaw | google-adk | gocode | adkcode | copilot-cli | qwen-code"
     usage
     exit 1
     ;;

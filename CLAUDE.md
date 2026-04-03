@@ -23,7 +23,7 @@ lawform-ai-plugin/
   for-opencode/
     AGENTS.md          — system instructions
     opencode.json      — MCP config
-  for-chatgpt-codex/
+  for-codex/
     AGENTS.md          — system instructions
   for-gemini-cli/
     GEMINI.md          — project instructions
